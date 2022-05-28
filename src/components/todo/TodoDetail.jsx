@@ -105,6 +105,7 @@ const TodoDetail = () => {
           onCloseModal={handleCloseDeleteModal}
           item={todoItem[listIndex]}
           onDeleteItem={handleDeleteTodoItem}
+          todo
         />
       )}
     </>

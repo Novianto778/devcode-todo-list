@@ -68,6 +68,7 @@ const ActivityDetailBar = ({
             value={title || ""}
             onChange={(e) => setTitle(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && onBlur()}
+            data-cy="todo-title"
           />
         ) : (
           <h1 data-cy="todo-title" ref={titleRef}>

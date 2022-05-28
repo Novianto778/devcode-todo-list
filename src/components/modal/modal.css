@@ -6,7 +6,7 @@
   background-color: var(--color-white);
   border-radius: 1rem;
   width: 70%;
-  z-index: 9999;
+  z-index: 999;
 }
 
 .modal-medium {

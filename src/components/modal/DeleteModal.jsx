@@ -2,12 +2,11 @@ import React from "react";
 import Backdrop from "../button/Backdrop";
 import Button from "../button/Button";
 
-const DeleteModal = ({ onCloseModal, item, onDeleteItem }) => {
-  console.log(item);
+const DeleteModal = ({ onCloseModal, item, onDeleteItem, todo }) => {
   return (
     <>
       <Backdrop onClick={onCloseModal} />
-      <div className="modal modal-medium" data-cy="todo-modal-delete">
+      <div className="modal modal-medium" data-cy={`${todo && "todo-"}modal-delete`}>
         <div className="modal-body modal-center">
           <span className="danger-icon" data-cy="modal-delete-icon"></span>
           <h4 data-cy="modal-delete-title">
