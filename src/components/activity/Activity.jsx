@@ -32,9 +32,6 @@ const Activity = () => {
     deleteActivity(id);
     handleCloseModal();
     setShowAlert(true);
-    setTimeout(() => {
-      setShowAlert(false);
-    }, 2000);
   };
 
   return (
