@@ -7,7 +7,6 @@ const SortButton = ({ groupId, item, setTodoItem }) => {
   const [isActive, setIsActive] = useState(false);
   const { sortTodo } = useActivities();
 
-  // console.log(item);
   useEffect(() => {
     if (item) setTodoItem(sortTodo(selected, item));
   }, [selected]);

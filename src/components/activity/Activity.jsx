@@ -48,9 +48,7 @@ const Activity = () => {
       />
 
       <ActivityBar />
-      {loading ? (
-        <p className="container">Loading....</p>
-      ) : activities?.length > 0 ? (
+      {activities?.length > 0 ? (
         <ActivityItem
           activities={activities}
           onOpenModal={handleOpenModal}

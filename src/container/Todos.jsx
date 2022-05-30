@@ -1,9 +1,7 @@
-import { lazy, Suspense } from "react";
 import Header from "../components/Header";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Activity from "../components/activity/Activity";
 import TodoDetail from "../components/todo/TodoDetail";
-// const LazyTodoDetail = lazy(() => import("../components/todo/TodoDetail"));
 
 const Todos = () => {
   return (

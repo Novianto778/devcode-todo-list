@@ -17,10 +17,8 @@ export function useActivities() {
 
 export function ActivitiesProvider({ children }) {
   const [activities, setActivities] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   const getActivities = (id = false) => {
-    setLoading(true);
     let url = BASE_API + "/activity-groups?email=" + EMAIL;
     if (id) {
       url = "https://todo.api.devcode.gethired.id/activity-groups/" + id;
@@ -35,7 +33,6 @@ export function ActivitiesProvider({ children }) {
       .catch((err) => {
         console.log(err.message);
       })
-      .then(() => setLoading(false));
   };
 
   const addActivity = () => {
@@ -153,7 +150,6 @@ export function ActivitiesProvider({ children }) {
         getActivities,
         addActivity,
         deleteActivity,
-        loading,
         updateActivity,
         addTodoItem,
         deleteTodoItem,
