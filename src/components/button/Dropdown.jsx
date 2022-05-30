@@ -21,21 +21,20 @@ const Dropdown = ({ selected, setSelected }) => {
         </div>
         <span className="chevron-down-icon"></span>
       </div>
-      {isActive && (
-        <div className="dropdown-content">
-          {options.map((option) => (
-            <div
-              key={option}
-              className="dropdown-item"
-              onClick={() => handleDropdown(option)}
-              data-cy={`modal-add-priority-${option.toLowerCase()}`}
-            >
-              <span className={`priority-icon ${labelPriority(option)}`}></span>
-              <span className="priority-item-title">{option}</span>
-            </div>
-          ))}
-        </div>
-      )}
+
+      <div className={`dropdown-content ${!isActive && "hide"}`}>
+        {options.map((option) => (
+          <div
+            key={option}
+            className="dropdown-item"
+            onClick={() => handleDropdown(option)}
+            data-cy={`modal-add-priority-${option.toLowerCase()}`}
+          >
+            <span className={`priority-icon ${labelPriority(option)}`}></span>
+            <span className="priority-item-title">{option}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

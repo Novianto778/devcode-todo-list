@@ -90,6 +90,10 @@
   overflow-y: scroll;
 }
 
+.dropdown.hide, .dropdown-content.hide {
+  display: none;
+}
+
 .sort-dropdown {
   position: absolute;
   width: 240px;

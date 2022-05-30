@@ -23,9 +23,7 @@ const SortButton = ({ groupId, item, setTodoItem }) => {
         onClick={handleActive}
         data-cy="todo-sort-button"
       ></span>
-      {isActive && (
-        <SortDropdown selected={selected} setSelected={setSelected} />
-      )}
+      <SortDropdown selected={selected} setSelected={setSelected} isActive={isActive} />
     </div>
   );
 };

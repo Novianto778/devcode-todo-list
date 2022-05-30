@@ -40,7 +40,7 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item, show }) => {
   // dropdown value
   return (
     <>
-      <div className={`modal ${!show && "hide"}`}>
+      <div className={`modal ${!show && "hide"}`} data-cy="modal-add">
         <div className="modal-content">
           <div className="modal-header">
             <h4 className="modal-title" data-cy="modal-add-title">
@@ -61,7 +61,7 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item, show }) => {
               >
                 Nama List Item
               </label>
-              <div data-cy="modal-add-name-input" className="input-container">
+              <div className="input-container">
                 <input
                   type="text"
                   placeholder="Tambahkan nama Activity"
@@ -69,6 +69,7 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item, show }) => {
                   className="input"
                   onChange={(e) => setTitle(e.target.value)}
                   value={title || ""}
+                  data-cy="modal-add-name-input"
                 />
               </div>
             </div>
@@ -81,8 +82,12 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item, show }) => {
               >
                 Priority
               </label>
-              <div data-cy="modal-add-name-input" className="input-container">
-                <Dropdown selected={selected} setSelected={setSelected} />
+              <div className="input-container">
+                <Dropdown
+                  selected={selected}
+                  setSelected={setSelected}
+                  data-cy="modal-add-name-input"
+                />
               </div>
             </div>
           </div>
