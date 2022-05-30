@@ -64,7 +64,7 @@ const TodoDetail = () => {
 
   return (
     <>
-      <SuccessModal setShowAlert={setShowAlert} show={showAlert} />
+      {showAlert && <SuccessModal setShowAlert={setShowAlert} />}
       <ActivityDetailBar
         name={activities?.title}
         id={id}
@@ -92,23 +92,23 @@ const TodoDetail = () => {
           <EmptyTodoState setShowModalAdd={setShowModalAdd} />
         )}
       </div>
-
-      <TodoModal
-        onCloseModal={handleCloseAddModal}
-        id={id}
-        addTodoItem={addTodoItem}
-        edit={isEdit}
-        item={todoItem[listIndex]}
-        show={showModalAdd}
-      />
-
-      <DeleteModal
-        onCloseModal={handleCloseDeleteModal}
-        item={todoItem[listIndex]}
-        onDeleteItem={handleDeleteTodoItem}
-        todo
-        show={showModalDelete}
-      />
+      {showModalAdd && (
+        <TodoModal
+          onCloseModal={handleCloseAddModal}
+          id={id}
+          addTodoItem={addTodoItem}
+          edit={isEdit}
+          item={todoItem[listIndex]}
+        />
+      )}
+      {showModalDelete && (
+        <DeleteModal
+          onCloseModal={handleCloseDeleteModal}
+          item={todoItem[listIndex]}
+          onDeleteItem={handleDeleteTodoItem}
+          todo
+        />
+      )}
     </>
   );
 };

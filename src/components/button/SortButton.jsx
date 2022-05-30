@@ -1,16 +1,15 @@
 import { useEffect, useState } from "react";
 import { useActivities } from "../../context/activities-context";
 import SortDropdown from "./SortDropdown";
-import { sortByLatest } from "../../helpers/sort";
 
-const SortButton = ({ groupId, item, setTodoItem }) => {
+const SortButton = ({ item, setTodoItem }) => {
   const [selected, setSelected] = useState("latest");
   const [isActive, setIsActive] = useState(false);
   const { sortTodo } = useActivities();
 
-  // console.log(item);
   useEffect(() => {
     if (item) setTodoItem(sortTodo(selected, item));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selected]);
 
   const handleActive = () => {
@@ -23,7 +22,13 @@ const SortButton = ({ groupId, item, setTodoItem }) => {
         onClick={handleActive}
         data-cy="todo-sort-button"
       ></span>
-      <SortDropdown selected={selected} setSelected={setSelected} setIsActive={setIsActive} isActive={isActive} />
+      {isActive && (
+        <SortDropdown
+          selected={selected}
+          setSelected={setSelected}
+          setIsActive={setIsActive}
+        />
+      )}
     </div>
   );
 };

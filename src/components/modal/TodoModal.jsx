@@ -4,34 +4,43 @@ import Backdrop from "../button/Backdrop";
 import Dropdown from "../button/Dropdown";
 import { useActivities } from "../../context/activities-context";
 
-const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item, show }) => {
-  const [selected, setSelected] = useState("Very High");
+const OPTIONS = [
+  { title: "Very High", value: "very-high" },
+  { title: "High", value: "high" },
+  { title: "Medium", value: "normal" },
+  { title: "Low", value: "low" },
+  { title: "Very Low", value: "very-low" },
+];
+const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item }) => {
+  const [selected, setSelected] = useState({
+    title: "Very High",
+    value: "very-high",
+  });
   const [title, setTitle] = useState("");
   const { updateTodoStatus } = useActivities();
 
   useEffect(() => {
     if (edit) {
       setTitle(item.title);
-      setSelected(item.priority === "normal" ? "Medium" : item.priority);
+      const index = OPTIONS.findIndex((opt) => opt.value === item.priority);
+      setSelected(OPTIONS[index]);
     }
   }, [item?.title, item?.priority, edit]);
 
   const handleAddTodoItem = () => {
-    let priority = selected.split(" ").join("-").toLowerCase();
-    priority = priority === "medium" ? "normal" : priority;
-    addTodoItem(id, title, priority);
+    addTodoItem(id, title, selected.value);
     setTitle("");
-    setSelected("Very High");
+    setSelected({
+      title: "Very High",
+      value: "very-high",
+    });
     onCloseModal();
   };
 
   const handleUpdateTodoItem = () => {
     updateTodoStatus(item.id, id, {
       title,
-      priority:
-        selected === "Medium"
-          ? "normal"
-          : selected.split(" ").join("-").toLowerCase(),
+      priority: selected.value,
     });
     onCloseModal();
   };
@@ -41,7 +50,7 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item, show }) => {
   // dropdown value
   return (
     <>
-      <div className={`modal ${!show && "hide"}`} data-cy="modal-add">
+      <div className={`modal`} data-cy="modal-add">
         <div className="modal-content">
           <div className="modal-header">
             <h4 className="modal-title" data-cy="modal-add-title">
@@ -88,6 +97,7 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item, show }) => {
                   selected={selected}
                   setSelected={setSelected}
                   data-cy="modal-add-name-input"
+                  OPTIONS={OPTIONS}
                 />
               </div>
             </div>
@@ -104,7 +114,7 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item, show }) => {
           </div>
         </div>
       </div>
-      {show && <Backdrop onClick={onCloseModal} />}
+      <Backdrop onClick={onCloseModal} />
     </>
   );
 };

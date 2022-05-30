@@ -1,20 +1,19 @@
-const SortDropdown = ({ selected, setSelected, isActive, setIsActive }) => {
-  const options = [
-    { title: "terbaru", value: "latest" },
-    { title: "terlama", value: "oldest" },
-    { title: "A-Z", value: "az" },
-    { title: "Z-A", value: "za" },
-    { title: "belum selesai", value: "unfinished" },
-  ];
-
+const OPTIONS = [
+  { title: "terbaru", value: "latest" },
+  { title: "terlama", value: "oldest" },
+  { title: "A-Z", value: "az" },
+  { title: "Z-A", value: "za" },
+  { title: "belum selesai", value: "unfinished" },
+];
+const SortDropdown = ({ selected, setSelected, setIsActive }) => {
   const handleDropdown = (option) => {
     setSelected(option);
     setIsActive(false);
   };
   return (
-    <div className={`dropdown sort-dropdown ${!isActive && "hide"}`}>
+    <div className={`dropdown sort-dropdown`}>
       <div className={`dropdown-content`}>
-        {options.map((option) => (
+        {OPTIONS.map((option) => (
           <div
             key={option.value}
             className="dropdown-item"
