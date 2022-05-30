@@ -90,7 +90,7 @@
   overflow-y: scroll;
 }
 
-.dropdown.hide, .dropdown-content.hide {
+.sort-dropdown.hide, .dropdown-content.hide {
   display: none;
 }
 

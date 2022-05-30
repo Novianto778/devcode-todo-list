@@ -4,6 +4,7 @@ import { useActivities } from "../../context/activities-context";
 import ActivityDetailBar from "../activity/ActivityDetailBar";
 import ListItem from "../list-item/ListItem";
 import DeleteModal from "../modal/DeleteModal";
+import SuccessModal from "../modal/SuccessModal";
 import TodoModal from "../modal/TodoModal";
 import EmptyTodoState from "./EmptyTodoState";
 
@@ -21,6 +22,7 @@ const TodoDetail = () => {
   const [listIndex, setListIndex] = useState(null);
   const [isEdit, setIsEdit] = useState(false);
   const [todoItem, setTodoItem] = useState([]);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     if (id) getActivities(id);
@@ -60,9 +62,9 @@ const TodoDetail = () => {
     handleCloseDeleteModal();
   };
 
-
   return (
     <>
+      <SuccessModal setShowAlert={setShowAlert} show={showAlert} />
       <ActivityDetailBar
         name={activities?.title}
         id={id}

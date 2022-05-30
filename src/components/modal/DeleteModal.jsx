@@ -7,7 +7,7 @@ const DeleteModal = ({ onCloseModal, item, onDeleteItem, todo, show }) => {
     <>
       <div
         className={`modal modal-medium ${!show && "hide"}`}
-        data-cy={`${todo ? "todo-" : ""}modal-delete`}
+        data-cy={`modal-delete`}
       >
         <div className="modal-body modal-center">
           <span className="danger-icon" data-cy="modal-delete-icon"></span>
