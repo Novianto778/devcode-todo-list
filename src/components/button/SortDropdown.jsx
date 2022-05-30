@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const SortDropdown = ({ selected, setSelected, isActive }) => {
+const SortDropdown = ({ selected, setSelected, isActive, setIsActive }) => {
   // const [selected, setSelected] = useState("latest");
 
   const options = [
@@ -13,6 +13,7 @@ const SortDropdown = ({ selected, setSelected, isActive }) => {
 
   const handleDropdown = (option) => {
     setSelected(option);
+    setIsActive(false);
   };
   return (
     <div className={`dropdown sort-dropdown `}>

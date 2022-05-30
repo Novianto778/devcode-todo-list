@@ -17,7 +17,7 @@ const Dropdown = ({ selected, setSelected }) => {
         data-cy="modal-add-priority-dropdown"
         onClick={(e) => setIsActive((prev) => !prev)}
       >
-        <div className="item-label" data-cy="modal-add-priority-item">
+        <div className="item-label">
           <span className={`priority-icon ${labelPriority(selected)}`}></span>
           <span className="priority-item-title">
             {selected.split("-").join(" ")}
@@ -32,7 +32,7 @@ const Dropdown = ({ selected, setSelected }) => {
             key={option}
             className="dropdown-item"
             onClick={() => handleDropdown(option)}
-            data-cy={`modal-add-priority-${option.toLowerCase()}`}
+            data-cy="modal-add-priority-item"
           >
             <span className={`priority-icon ${labelPriority(option)}`}></span>
             <span className="priority-item-title">{option}</span>
