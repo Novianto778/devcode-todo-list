@@ -1,7 +1,8 @@
+import { useEffect, lazy, Suspense } from "react";
 import Header from "../components/Header";
 import { Routes, Route, BrowserRouter } from "react-router-dom";
 import Activity from "../components/activity/Activity";
-import TodoDetail from "../components/todo/TodoDetail";
+const LazyTodoDetail = lazy(() => import("../components/todo/TodoDetail"));
 
 const Todos = () => {
   return (
@@ -10,7 +11,14 @@ const Todos = () => {
         <Header />
         <Routes>
           <Route path="/" element={<Activity />} />
-          <Route path="/detail/:id" element={<TodoDetail />} />
+          <Route
+            path="/detail/:id"
+            element={
+              <Suspense fallback={<p className="loader"></p>}>
+                <LazyTodoDetail />
+              </Suspense>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </>

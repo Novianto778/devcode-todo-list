@@ -1,19 +1,24 @@
-const OPTIONS = [
+import React from "react";
+
+const options = [
   { title: "terbaru", value: "latest" },
   { title: "terlama", value: "oldest" },
   { title: "A-Z", value: "az" },
   { title: "Z-A", value: "za" },
   { title: "belum selesai", value: "unfinished" },
 ];
-const SortDropdown = ({ selected, setSelected, setIsActive }) => {
+
+const SortDropdown = ({ selected, setSelected, isActive, setIsActive }) => {
+  // const [selected, setSelected] = useState("latest");
+
   const handleDropdown = (option) => {
     setSelected(option);
     setIsActive(false);
   };
   return (
-    <div className={`dropdown sort-dropdown`}>
-      <div className={`dropdown-content`}>
-        {OPTIONS.map((option) => (
+    <div className={`dropdown sort-dropdown `}>
+      <div className={`dropdown-content ${!isActive && "hide"}`}>
+        {options.map((option) => (
           <div
             key={option.value}
             className="dropdown-item"

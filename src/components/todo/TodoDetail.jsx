@@ -92,23 +92,23 @@ const TodoDetail = () => {
           <EmptyTodoState setShowModalAdd={setShowModalAdd} />
         )}
       </div>
-      {showModalAdd && (
-        <TodoModal
-          onCloseModal={handleCloseAddModal}
-          id={id}
-          addTodoItem={addTodoItem}
-          edit={isEdit}
-          item={todoItem[listIndex]}
-        />
-      )}
-      {showModalDelete && (
-        <DeleteModal
-          onCloseModal={handleCloseDeleteModal}
-          item={todoItem[listIndex]}
-          onDeleteItem={handleDeleteTodoItem}
-          todo
-        />
-      )}
+
+      <TodoModal
+        onCloseModal={handleCloseAddModal}
+        id={id}
+        addTodoItem={addTodoItem}
+        edit={isEdit}
+        item={todoItem[listIndex]}
+        show={showModalAdd}
+      />
+
+      <DeleteModal
+        onCloseModal={handleCloseDeleteModal}
+        item={todoItem[listIndex]}
+        onDeleteItem={handleDeleteTodoItem}
+        todo
+        show={showModalDelete}
+      />
     </>
   );
 };

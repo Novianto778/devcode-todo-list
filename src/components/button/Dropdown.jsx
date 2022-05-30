@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 
-const Dropdown = ({ selected, setSelected, OPTIONS }) => {
+const Dropdown = ({ selected, setSelected }) => {
   const [isActive, setIsActive] = useState(false);
-
+  const options = ["Very High", "High", "Medium", "Low", "Very Low"];
+  const labelPriority = (priority) => {
+    return priority.split(" ").join("-").toLowerCase();
+  };
   const handleDropdown = (option) => {
     setSelected(option);
     setIsActive(false);
@@ -15,27 +18,27 @@ const Dropdown = ({ selected, setSelected, OPTIONS }) => {
         onClick={(e) => setIsActive((prev) => !prev)}
       >
         <div className="item-label">
-          <span className={`priority-icon ${selected.value}`}></span>
-          <span className="priority-item-title">{selected.title}</span>
+          <span className={`priority-icon ${labelPriority(selected)}`}></span>
+          <span className="priority-item-title">
+            {selected.split("-").join(" ")}
+          </span>
+          <span className="chevron-down-icon"></span>
         </div>
-        <span className="chevron-down-icon"></span>
       </div>
 
-      {isActive && (
-        <div className={`dropdown-content`}>
-          {OPTIONS.map((option) => (
-            <div
-              key={option.value}
-              className="dropdown-item"
-              onClick={() => handleDropdown(option)}
-              data-cy="modal-add-priority-item"
-            >
-              <span className={`priority-icon ${option.value}`}></span>
-              <span className="priority-item-title">{option.title}</span>
-            </div>
-          ))}
-        </div>
-      )}
+      <div className={`dropdown-content ${!isActive && "hide"}`}>
+        {options.map((option) => (
+          <div
+            key={option}
+            className="dropdown-item"
+            onClick={() => handleDropdown(option)}
+            data-cy="modal-add-priority-item"
+          >
+            <span className={`priority-icon ${labelPriority(option)}`}></span>
+            <span className="priority-item-title">{option}</span>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

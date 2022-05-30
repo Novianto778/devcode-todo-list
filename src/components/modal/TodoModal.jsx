@@ -2,45 +2,37 @@ import React, { useEffect, useState } from "react";
 import Button from "../button/Button";
 import Backdrop from "../button/Backdrop";
 import Dropdown from "../button/Dropdown";
+import "./modal.css";
 import { useActivities } from "../../context/activities-context";
 
-const OPTIONS = [
-  { title: "Very High", value: "very-high" },
-  { title: "High", value: "high" },
-  { title: "Medium", value: "normal" },
-  { title: "Low", value: "low" },
-  { title: "Very Low", value: "very-low" },
-];
-const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item }) => {
-  const [selected, setSelected] = useState({
-    title: "Very High",
-    value: "very-high",
-  });
+const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item, show }) => {
+  const [selected, setSelected] = useState("Very High");
   const [title, setTitle] = useState("");
   const { updateTodoStatus } = useActivities();
 
   useEffect(() => {
     if (edit) {
       setTitle(item.title);
-      const index = OPTIONS.findIndex((opt) => opt.value === item.priority);
-      setSelected(OPTIONS[index]);
+      setSelected(item.priority === "normal" ? "Medium" : item.priority);
     }
-  }, [item?.title, item?.priority, edit]);
+  }, []);
 
   const handleAddTodoItem = () => {
-    addTodoItem(id, title, selected.value);
+    let priority = selected.split(" ").join("-").toLowerCase();
+    priority = priority === "medium" ? "normal" : priority;
+    addTodoItem(id, title, priority);
     setTitle("");
-    setSelected({
-      title: "Very High",
-      value: "very-high",
-    });
+    setSelected("Very High");
     onCloseModal();
   };
 
   const handleUpdateTodoItem = () => {
     updateTodoStatus(item.id, id, {
       title,
-      priority: selected.value,
+      priority:
+        selected === "Medium"
+          ? "normal"
+          : selected.split(" ").join("-").toLowerCase(),
     });
     onCloseModal();
   };
@@ -50,7 +42,7 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item }) => {
   // dropdown value
   return (
     <>
-      <div className={`modal`} data-cy="modal-add">
+      <div className={`modal ${!show && "hide"}`} data-cy="modal-add">
         <div className="modal-content">
           <div className="modal-header">
             <h4 className="modal-title" data-cy="modal-add-title">
@@ -97,7 +89,6 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item }) => {
                   selected={selected}
                   setSelected={setSelected}
                   data-cy="modal-add-name-input"
-                  OPTIONS={OPTIONS}
                 />
               </div>
             </div>
@@ -114,7 +105,7 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item }) => {
           </div>
         </div>
       </div>
-      <Backdrop onClick={onCloseModal} />
+      {show && <Backdrop onClick={onCloseModal} />}
     </>
   );
 };

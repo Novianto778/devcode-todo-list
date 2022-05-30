@@ -1,4 +1,4 @@
-import { useContext, createContext, useState} from "react";
+import { useContext, createContext, useState } from "react";
 import {
   sortByAlphabet,
   sortByAlphabetReverse,

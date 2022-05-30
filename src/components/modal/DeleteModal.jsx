@@ -2,11 +2,11 @@ import React from "react";
 import Backdrop from "../button/Backdrop";
 import Button from "../button/Button";
 
-const DeleteModal = ({ onCloseModal, item, onDeleteItem}) => {
+const DeleteModal = ({ onCloseModal, item, onDeleteItem, todo, show }) => {
   return (
     <>
       <div
-        className={`modal modal-medium`}
+        className={`modal modal-medium ${!show && "hide"}`}
         data-cy={`modal-delete`}
       >
         <div className="modal-body modal-center">
@@ -33,7 +33,7 @@ const DeleteModal = ({ onCloseModal, item, onDeleteItem}) => {
           </div>
         </div>
       </div>
-      <Backdrop onClick={onCloseModal} />
+      {show && <Backdrop onClick={onCloseModal} />}
     </>
   );
 };

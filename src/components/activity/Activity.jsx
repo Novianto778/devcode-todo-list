@@ -32,18 +32,20 @@ const Activity = () => {
     deleteActivity(id);
     handleCloseModal();
     setShowAlert(true);
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 2000);
   };
 
   return (
     <>
-      {showAlert && <SuccessModal setShowAlert={setShowAlert} />}
-      {showModal && (
-        <DeleteModal
-          item={activities[cardItemIndex]}
-          onCloseModal={handleCloseModal}
-          onDeleteItem={handleDeleteItem}
-        />
-      )}
+      <SuccessModal setShowAlert={setShowAlert} show={showAlert} />
+      <DeleteModal
+        item={activities[cardItemIndex]}
+        onCloseModal={handleCloseModal}
+        onDeleteItem={handleDeleteItem}
+        show={showModal}
+      />
 
       <ActivityBar />
       {loading ? (
