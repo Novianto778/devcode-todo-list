@@ -12,7 +12,11 @@ const Dropdown = ({ selected, setSelected }) => {
   };
   return (
     <div className="dropdown">
-      <div className="dropdown-btn" onClick={(e) => setIsActive(!isActive)}>
+      <div
+        className="dropdown-btn"
+        data-cy="modal-add-priority-dropdown"
+        onClick={(e) => setIsActive((prev) => !prev)}
+      >
         <div className="item-label" data-cy="modal-add-priority-item">
           <span className={`priority-icon ${labelPriority(selected)}`}></span>
           <span className="priority-item-title">
@@ -22,10 +26,7 @@ const Dropdown = ({ selected, setSelected }) => {
         </div>
       </div>
 
-      <div
-        className={`dropdown-content ${!isActive && "hide"}`}
-        data-cy="modal-add-priority-dropdown"
-      >
+      <div className={`dropdown-content ${!isActive && "hide"}`}>
         {options.map((option) => (
           <div
             key={option}

@@ -15,14 +15,17 @@ const SortDropdown = ({ selected, setSelected, isActive }) => {
     setSelected(option);
   };
   return (
-    <div className={`dropdown sort-dropdown ${!isActive && "hide"}`}>
-      <div className="dropdown-content">
+    <div className={`dropdown sort-dropdown `}>
+      <div className={`dropdown-content ${!isActive && "hide"}`}>
         {options.map((option) => (
-          <div className="dropdown-item" data-cy="sort-selection">
+          <div
+            key={option.value}
+            className="dropdown-item"
+            data-cy="sort-selection"
+            onClick={() => handleDropdown(option.value)}
+          >
             <div
-              key={option.value}
               className="item-label"
-              onClick={() => handleDropdown(option.value)}
               data-cy={`${
                 selected === option.value ? "sort-selection-selected" : "false"
               }`}
