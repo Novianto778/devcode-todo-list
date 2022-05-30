@@ -37,17 +37,16 @@ const Activity = () => {
     }, 2000);
   };
 
-
   return (
     <>
-      {showAlert && <SuccessModal />}
-      {showModal && (
-        <DeleteModal
-          item={activities[cardItemIndex]}
-          onCloseModal={handleCloseModal}
-          onDeleteItem={handleDeleteItem}
-        />
-      )}
+      <SuccessModal setShowAlert={setShowAlert} show={showAlert} />
+      <DeleteModal
+        item={activities[cardItemIndex]}
+        onCloseModal={handleCloseModal}
+        onDeleteItem={handleDeleteItem}
+        show={showModal}
+      />
+
       <ActivityBar />
       {loading ? (
         <p className="container">Loading....</p>

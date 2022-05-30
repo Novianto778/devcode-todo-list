@@ -5,7 +5,7 @@ import Dropdown from "../button/Dropdown";
 import "./modal.css";
 import { useActivities } from "../../context/activities-context";
 
-const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item }) => {
+const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item, show }) => {
   const [selected, setSelected] = useState("Very High");
   const [title, setTitle] = useState("");
   const { updateTodoStatus } = useActivities();
@@ -40,8 +40,7 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item }) => {
   // dropdown value
   return (
     <>
-      <Backdrop onClick={onCloseModal} />
-      <div className="modal">
+      <div className={`modal ${!show && "hide"}`}>
         <div className="modal-content">
           <div className="modal-header">
             <h4 className="modal-title" data-cy="modal-add-title">
@@ -99,6 +98,7 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item }) => {
           </div>
         </div>
       </div>
+      {show && <Backdrop onClick={onCloseModal} />}
     </>
   );
 };
