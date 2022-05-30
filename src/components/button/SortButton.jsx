@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useActivities } from "../../context/activities-context";
 import SortDropdown from "./SortDropdown";
-import { sortByLatest } from "../../helpers/sort";
 
 const SortButton = ({ groupId, item, setTodoItem }) => {
   const [selected, setSelected] = useState("latest");

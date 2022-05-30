@@ -9,7 +9,6 @@ const options = [
 ];
 
 const SortDropdown = ({ selected, setSelected, isActive, setIsActive }) => {
-  // const [selected, setSelected] = useState("latest");
 
   const handleDropdown = (option) => {
     setSelected(option);
