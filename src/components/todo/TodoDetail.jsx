@@ -64,7 +64,7 @@ const TodoDetail = () => {
 
   return (
     <>
-      {showAlert && <SuccessModal setShowAlert={setShowAlert} />}
+      <SuccessModal setShowAlert={setShowAlert} show={showAlert} />
       <ActivityDetailBar
         name={activities?.title}
         id={id}
