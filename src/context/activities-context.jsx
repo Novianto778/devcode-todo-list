@@ -1,4 +1,4 @@
-import { useContext, createContext, useState, useMemo } from "react";
+import { useContext, createContext, useState} from "react";
 import {
   sortByAlphabet,
   sortByAlphabetReverse,
@@ -148,7 +148,7 @@ export function ActivitiesProvider({ children }) {
   return (
     <ActivitiesContext.Provider
       value={{
-        activities: useMemo(() => activities, [activities]),
+        activities,
         setActivities,
         getActivities,
         addActivity,
