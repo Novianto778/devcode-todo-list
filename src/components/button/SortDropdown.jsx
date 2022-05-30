@@ -1,8 +1,4 @@
-import React, { useState } from "react";
-
 const SortDropdown = ({ selected, setSelected, isActive, setIsActive }) => {
-  // const [selected, setSelected] = useState("latest");
-
   const options = [
     { title: "terbaru", value: "latest" },
     { title: "terlama", value: "oldest" },
@@ -16,8 +12,8 @@ const SortDropdown = ({ selected, setSelected, isActive, setIsActive }) => {
     setIsActive(false);
   };
   return (
-    <div className={`dropdown sort-dropdown `}>
-      <div className={`dropdown-content ${!isActive && "hide"}`}>
+    <div className={`dropdown sort-dropdown ${!isActive && "hide"}`}>
+      <div className={`dropdown-content`}>
         {options.map((option) => (
           <div
             key={option.value}

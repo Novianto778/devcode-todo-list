@@ -14,7 +14,7 @@ const TodoModal = ({ onCloseModal, id, addTodoItem, edit, item, show }) => {
       setTitle(item.title);
       setSelected(item.priority === "normal" ? "Medium" : item.priority);
     }
-  }, []);
+  }, [item?.title, item?.priority, edit]);
 
   const handleAddTodoItem = () => {
     let priority = selected.split(" ").join("-").toLowerCase();
