@@ -1,7 +1,6 @@
-import { memo } from "react";
 import ActivityCard from "./ActivityCard";
 
-const ActivityItem = memo(({ activities, onOpenModal, setCardItemIndex }) => {
+const ActivityItem = ({ activities, onOpenModal, setCardItemIndex }) => {
   return (
     <div className="activity-wrapper container">
       {activities.map((activity, idx) => {
@@ -17,6 +16,6 @@ const ActivityItem = memo(({ activities, onOpenModal, setCardItemIndex }) => {
       })}
     </div>
   );
-});
+};
 
 export default ActivityItem;

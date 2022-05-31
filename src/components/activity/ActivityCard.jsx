@@ -1,12 +1,10 @@
-import React, { useRef } from "react";
+import { memo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { useActivities } from "../../context/activities-context";
 import { formatDate } from "../../helpers/format-date";
 
-const ActivityCard = ({ detail, onOpenModal, idx, setCardItemIndex }) => {
+const ActivityCard = memo(({ detail, onOpenModal, idx, setCardItemIndex }) => {
   const delBtnRef = useRef();
   const navigate = useNavigate();
-  const { deleteActivity } = useActivities();
 
   const navigateToDetail = (e) => {
     if (e.target !== delBtnRef.current) navigate("/detail/" + detail.id);
@@ -36,6 +34,6 @@ const ActivityCard = ({ detail, onOpenModal, idx, setCardItemIndex }) => {
       </div>
     </div>
   );
-};
+});
 
 export default ActivityCard;
