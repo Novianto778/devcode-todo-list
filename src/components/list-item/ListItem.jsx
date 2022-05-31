@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useActivities } from "../../context/activities-context";
 
-const ListItem = ({ item, onOpenModal, onEditModal, setIsEdit, groupId }) => {
+const ListItem = useMemo(({ item, onOpenModal, onEditModal, setIsEdit, groupId }) => {
   const [isChecked, setIsChecked] = useState(item.is_active);
   const { updateTodoStatus } = useActivities();
 
@@ -49,6 +49,6 @@ const ListItem = ({ item, onOpenModal, onEditModal, setIsEdit, groupId }) => {
       </div>
     </div>
   );
-};
+});
 
 export default ListItem;
