@@ -42,7 +42,10 @@ export function formatDate(currDate) {
     case 11:
       bulan = "Desember";
       break;
+    default:
+      bulan = "";
+      break;
   }
 
-  return `${tanggal} ${bulan} ${tahun}`
+  return `${tanggal} ${bulan} ${tahun}`;
 }

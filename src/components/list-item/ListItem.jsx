@@ -1,7 +1,7 @@
-import { useEffect, useState, useMemo } from "react";
+import { useEffect, useState, memo } from "react";
 import { useActivities } from "../../context/activities-context";
 
-const ListItem = useMemo(({ item, onOpenModal, onEditModal, setIsEdit, groupId }) => {
+const ListItem = memo(({ item, onOpenModal, onEditModal, setIsEdit, groupId }) => {
   const [isChecked, setIsChecked] = useState(item.is_active);
   const { updateTodoStatus } = useActivities();
 
